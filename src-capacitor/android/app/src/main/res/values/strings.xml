@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Fanny</string>
+    <string name="title_activity_main">Fanny</string>
+    <string name="package_name">org.oespirito.fanny</string>
+    <string name="custom_url_scheme">org.oespirito.fanny</string>
+</resources>
