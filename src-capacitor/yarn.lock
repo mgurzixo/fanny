@@ -111,6 +111,16 @@
   "resolved" "https://registry.npmjs.org/compare-versions/-/compare-versions-3.6.0.tgz"
   "version" "3.6.0"
 
+"cordova-plugin-ble-central@^1.6.0":
+  "integrity" "sha512-dkEc7srQwReBgO2WW7IyFPpyIh4P2u17Bq3baG0vnSTRxO8EkFs8T/W7/nbePzQmpgef7ohTLtWoTAqq+C9BdQ=="
+  "resolved" "https://registry.npmjs.org/cordova-plugin-ble-central/-/cordova-plugin-ble-central-1.6.0.tgz"
+  "version" "1.6.0"
+
+"cordova-plugin-x-toast@^2.7.3":
+  "integrity" "sha512-+1aV7wJZpJdeZKTbBiagGawAJq7LOA4TFD6Et1uyTz+OUr3F4url8mXS+qLsag6kBCRftWg9WTA2bZTZv4tBjw=="
+  "resolved" "https://registry.npmjs.org/cordova-plugin-x-toast/-/cordova-plugin-x-toast-2.7.3.tgz"
+  "version" "2.7.3"
+
 "escape-string-regexp@^1.0.5":
   "integrity" "sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg=="
   "resolved" "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
@@ -190,6 +200,11 @@
 "isexe@^2.0.0":
   "integrity" "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="
   "resolved" "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
+  "version" "2.0.0"
+
+"jetifier@^2.0.0":
+  "integrity" "sha512-J4Au9KuT74te+PCCCHKgAjyLlEa+2VyIAEPNCdE5aNkAJ6FAJcAqcdzEkSnzNksIa9NkGmC4tPiClk2e7tCJuQ=="
+  "resolved" "https://registry.npmjs.org/jetifier/-/jetifier-2.0.0.tgz"
   "version" "2.0.0"
 
 "jsonfile@^4.0.0":

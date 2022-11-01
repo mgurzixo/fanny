@@ -1,4 +1,4 @@
-package org.oespirito.fanny;
+package com.oespirito.fanny;
 
 import android.os.Bundle;
 
@@ -17,6 +17,8 @@ public class MainActivity extends BridgeActivity {
       // Additional plugins you've installed go here
       // Ex: add(TotallyAwesomePlugin.class);
     }});
+
+              
 
               
   }

@@ -1,0 +1,5 @@
+{
+    "configuration": "clock=clock16,micronucleus=default,burnmode=upgrade",
+    "board": "digistump:avr:digispark-tiny",
+    "sketch": "pwm1.ino"
+}

@@ -102,7 +102,7 @@ module.exports = configure(function (ctx) {
       // https: true,
       open: false, // opens browser window automatically
       // https: true,
-      port: ctx.mode.spa ? 3000 : ctx.mode.pwa ? 3001 : ctx.mode.android ? 3002 : 3003,
+      port: ctx.mode.spa ? 3000 : ctx.mode.pwa ? 3001 : ctx.mode.capacitor ? 3002 : 3003,
   },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
@@ -181,7 +181,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: false
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/developing-electron-apps/configuring-electron

@@ -27,7 +27,6 @@
 
 <script setup>
 // import { defineComponent, ref } from 'vue';
-import fanSvg from "assets/computer-fan.svg";
 
 
 
