@@ -18,7 +18,7 @@ class Button {
 
  public:
   Button(uint8_t pinId) : pinId_(pinId) {
-    pinMode(pinId_, INPUT_PULLUP);
+    pinMode(pinId_, INPUT);
     currentState_ = digitalRead(pinId_);
     ignoreUntil_ = millis() + DEBOUNCE_MILLIS;
   }

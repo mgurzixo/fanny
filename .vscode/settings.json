@@ -18,5 +18,8 @@
 },
 "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
+},
+"[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
 }
 }

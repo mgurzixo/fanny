@@ -1,5 +1,5 @@
 <template>
-  <q-card class="zk-card">
+  <q-card class="zk-card" style="background:Cornsilk; color:Maroon;">
     <div v-if="isConnected === true">
       <q-card-section>
         <div class="text-h5">
@@ -12,8 +12,8 @@
         <div class="cursor-pointer" style="width: 100%">
           <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
             <div class="text-h5">Name:</div>
-            <q-input class="col-grow q-py-none q-my-none text-h5 " rounded outlined v-model="newName"
-              :rules="[val => val.length > 2 && val.length < 13 || 'Min 3, Max 12 characters']">
+            <q-input class="col-grow q-py-none q-my-none text-h5 " rounded outlined v-model="newName" :rules="[val => val.length > 2 && val.length < 16 || 'Min 3, Max 15 characters',
+            val => (/^([-_\.\p{L}\p{N}])+$/u).test(val) || 'Invalid char. Letters, numbers or [-_.] only']">
             </q-input>
             <div class="row justify-end items-baseline">
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
@@ -30,16 +30,18 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn label="Ok" color="primary" @click="doClose" />
+        <q-btn label="Disconnect" color="primary" @click="doClose" />
       </q-card-actions>
     </div>
 
 
     <div v-else class="q-ma-lg column">
-      <q-btn loading color="primary" class="q-px-lg">
+      <q-btn loading color="primary" class="q-px-xs q-pb-xl">
         <template v-slot:loading>
           <q-spinner-radio class="on-left" />
-          Connecting to "{{ device.name }}"
+          <div class="column">
+            Connecting to<br /> "{{ device.name }}"
+          </div>
         </template>
       </q-btn>
       <q-btn class="q-mt-lg self-center" color="negative" @click="doClose" label="Stop" />
@@ -63,7 +65,7 @@ import { mgToast, mgErrorToast } from "@/lib/mgToast";
 
 let isConnected = ref(false);
 let speed = ref(0);
-let minSpeed = ref(0);
+let minSpeed = ref(1);
 let maxSpeed = ref(0);
 let newName = ref("");
 let fanName = ref("");
@@ -127,17 +129,17 @@ function onReset() {
 
 function onSpeedUpdate() {
   console.log(`[DoDevice.onSpeedUpdate] newSpeed:${speed.value}`);
-  doBle(stringToBytes(`S${speed.value}\n`), (data) => {
+  doBle(stringToBytes(`S${speed.value - 1}\n`), (data) => {
     let r = bytesToString(data);
     console.log(`[DoDevice.onSpeedUpdate] r:${r}`);
     let res = r.match(/VFanny V(\d) T(\d) S(\d)\/(\d)/);
-    // if (!res) {
-    //   mgErrorToast("Invalid device\nDisconnecting.")
-    // }
-    // else {
-    //   console.log(`[DoDevice.onSpeedUpdate] res:${JSON.stringify(res)}`);
-    //   speed.value = Number(res[3]);
-    // }
+    if (!res) {
+      mgErrorToast("Invalid device\nDisconnecting.")
+    }
+    else {
+      console.log(`[DoDevice.onSpeedUpdate] res:${JSON.stringify(res)}`);
+      speed.value = Number(res[3]) + 1;
+    }
   });
 }
 
@@ -211,8 +213,8 @@ function checkFanny() {
     else {
       console.log(`[DoDevice.checkFanny] res:${JSON.stringify(res)}`);
       fanName.value = props.device.fanName;
-      speed.value = Number(res[3]);
-      maxSpeed.value = Number(res[4]);
+      speed.value = Number(res[3]) + 1;
+      maxSpeed.value = Number(res[4]) + 1;
       newName.value = props.device.name;
     }
   });

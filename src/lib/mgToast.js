@@ -14,7 +14,7 @@ export function mgErrorToast(text, success){
     {
       message: text,
       duration: 3000, position: "bottom", addPixelsY: -200, styling: {
-        backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
+        backgroundColor: '#DD0000', // make sure you use #RRGGBB. Default #333333
       textColor: '#FFFFFF', // Ditto. Default #FFFFFF
       }
     }, success);

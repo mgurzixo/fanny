@@ -68,34 +68,44 @@
             "name": "Arduino",
             "compilerPath": "/home/mgouget/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
             "compilerArgs": [
-                "-w",
+                "-Wall",
+                "-Wextra",
                 "-std=gnu++11",
                 "-fpermissive",
                 "-fno-exceptions",
                 "-ffunction-sections",
                 "-fdata-sections",
                 "-fno-threadsafe-statics",
-                "-Wno-error=narrowing"
+                "-flto"
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "/home/mgouget/.arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino",
-                "/home/mgouget/.arduino15/packages/arduino/hardware/avr/1.8.5/variants/eightanaloginputs",
-                "/home/mgouget/.arduino15/packages/arduino/hardware/avr/1.8.5/libraries/SoftwareSerial/src",
+                "/home/mgouget/.arduino15/packages/digistump/hardware/avr/1.7.5/cores/tiny",
+                "/home/mgouget/.arduino15/packages/digistump/hardware/avr/1.7.5/variants/digispark",
+                "/home/mgouget/.arduino15/packages/digistump/hardware/avr/1.7.5/libraries/DigisparkSoftSerial",
+                "/home/mgouget/.arduino15/packages/digistump/hardware/avr/1.7.5/libraries/DigisparkTinyPinChange",
                 "/home/mgouget/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/home/mgouget/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
                 "/home/mgouget/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
             ],
             "forcedInclude": [
-                "/home/mgouget/.arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino/Arduino.h"
+                "/home/mgouget/.arduino15/packages/digistump/hardware/avr/1.7.5/cores/tiny/Arduino.h"
             ],
             "cStandard": "c11",
             "cppStandard": "c++11",
             "defines": [
                 "F_CPU=16000000L",
+                "SERIAL_BUFFER_SIZE=",
                 "ARDUINO=10816",
-                "ARDUINO_AVR_NANO",
+                "ARDUINO_AVR_DIGISPARK",
                 "ARDUINO_ARCH_AVR",
+                "ARDUINO=10816",
+                "ARDUINO_AVR_DIGISPARK",
+                "ARDUINO_ARCH_AVR",
+                "DIGISTUMPCORE=\"1.7.5\"",
+                "DIGISTUMPCORE_MAJOR=1UL",
+                "DIGISTUMPCORE_MINOR=7UL",
+                "DIGISTUMPCORE_PATCH=5UL",
                 "__DBL_MIN_EXP__=(-125)",
                 "__HQ_FBIT__=15",
                 "__cpp_attributes=200809",
