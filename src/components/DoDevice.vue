@@ -83,7 +83,7 @@ let props = defineProps({
 const emit = defineEmits(["disconnectEvent"])
 
 async function doClose() {
-  console.log(`[DoDevice.doClose] Closing`);
+  // console.log(`[DoDevice.doClose] Closing`);
   // await ble.withPromises.disconnect(props.device.id);
   // console.log(`[DoDevice.doClose] disconnected`);
   isConnected.value = false;
@@ -107,7 +107,7 @@ function bytesToString(buffer) {
 
 async function setName(name) {
   let id = props.device.id;
-  console.log(`[DoDevice.setName] device:${id} Setting name:${name}`);
+  // console.log(`[DoDevice.setName] device:${id} Setting name:${name}`);
   await ble.withPromises.write(id, SERVICE_UUID, CHARACTERISTIC_UUID, stringToBytes(`N${name}\n`));
   mgToast("Name changed.\nPlease wait for new name and reconnect");
   setTimeout(() => {
@@ -128,7 +128,7 @@ function onReset() {
 
 
 function onSpeedUpdate() {
-  console.log(`[DoDevice.onSpeedUpdate] newSpeed:${speed.value}`);
+  // console.log(`[DoDevice.onSpeedUpdate] newSpeed:${speed.value}`);
   doBle(stringToBytes(`S${speed.value - 1}\n`), (data) => {
     let r = bytesToString(data);
     console.log(`[DoDevice.onSpeedUpdate] r:${r}`);
@@ -137,7 +137,7 @@ function onSpeedUpdate() {
       mgErrorToast("Invalid device\nDisconnecting.")
     }
     else {
-      console.log(`[DoDevice.onSpeedUpdate] res:${JSON.stringify(res)}`);
+      // console.log(`[DoDevice.onSpeedUpdate] res:${JSON.stringify(res)}`);
       speed.value = Number(res[3]) + 1;
     }
   });
@@ -157,22 +157,23 @@ function bleError(reason) {
 
 function onData(data) {
   // data received from BLE, have to parse it
-  console.log(`[DoDevice.onData] data: '${bytesToString(data)}'`);
+  // console.log(`[DoDevice.onData] data: '${bytesToString(data)}'`);
   let x = bleSuccessCb;
   bleSuccessCb = undefined;
   bleErrorCb = undefined;
-  console.log(`[DoDevice.onData] bleTimeoutId:'${bleTimeoutId}'`);
+  // console.log(`[DoDevice.onData] bleTimeoutId:'${bleTimeoutId}'`);
   if (bleTimeoutId != undefined) {
-    console.log(`[DoDevice.onData] Clearing timeout=${bleTimeoutId}`);
+    // console.log(`[DoDevice.onData] Clearing timeout=${bleTimeoutId}`);
     clearTimeout(bleTimeoutId);
   }
-  else console.log(`[DoDevice.onData] No timeout`);
+  // else console.log(`[DoDevice.onData] No timeout`);
   bleTimeoutId = undefined;
   if (x) x(data);
 }
 
 function onError(reason) {
   console.log(`[DoDevice.onError] Reason: '${JSON.stringify(reason)}'`);
+  mgErrorToast("ERROR: " + reason);
   let x = bleErrorCb;
   bleSuccessCb = undefined;
   bleErrorCb = undefined;
@@ -187,31 +188,31 @@ function waitResponse(successCb, errorCb = bleError, timeoutMs = 1000) {
   if (errorCb) bleErrorCb = errorCb;
   if (timeoutMs != undefined) {
     bleTimeoutId = setTimeout(() => {
-      onError("Timeout");
+      onError("Timeout waiting for response");
     }, timeoutMs);
-    console.log(`[DoDevice.waitResponse] Set bleTimeoutId:'${bleTimeoutId}'`);
+    // console.log(`[DoDevice.waitResponse] Set bleTimeoutId:'${bleTimeoutId}'`);
   }
 }
 
 async function doBle(data, successCb, errorCb, timeoutMs) {
-  console.log(`[DoDevice.doBle] sending data`);
+  // console.log(`[DoDevice.doBle] sending data`);
   waitResponse(successCb, errorCb, timeoutMs);
   await ble.withPromises.write(props.device.id, SERVICE_UUID, CHARACTERISTIC_UUID, data);
 }
 
 
 function checkFanny() {
-  console.log(`[DoDevice.checkFanny] device: ${props.device.name}`);
+  // console.log(`[DoDevice.checkFanny] device: ${props.device.name}`);
   doBle(stringToBytes(`V\n`), (data) => {
     let r = bytesToString(data);
-    console.log(`[DoDevice.checkFanny] r:${r}`);
+    // console.log(`[DoDevice.checkFanny] r:${r}`);
     let res = r.match(/VFanny V(\d) T(\d) S(\d)\/(\d)/);
     if (!res) {
       mgErrorToast("Invalid device\nDisconnecting.")
       doClose();
     }
     else {
-      console.log(`[DoDevice.checkFanny] res:${JSON.stringify(res)}`);
+      // console.log(`[DoDevice.checkFanny] res:${JSON.stringify(res)}`);
       fanName.value = props.device.fanName;
       speed.value = Number(res[3]) + 1;
       maxSpeed.value = Number(res[4]) + 1;
@@ -221,11 +222,10 @@ function checkFanny() {
 }
 
 async function connectCallback() {
-  console.log(`[DoDevice.connectCallback] Connected`);
+  // console.log(`[DoDevice.connectCallback] Connected`);
   isConnected.value = true;
   ble.startNotification(props.device.id, SERVICE_UUID, CHARACTERISTIC_UUID, onData, onError);
   checkFanny();
-  // setName("FFF");
 }
 
 onUnmounted(() => {
@@ -243,7 +243,7 @@ function connectError(e) {
 }
 
 onMounted(() => {
-  console.log(`[DoDevice.onMounted] Connecting...`);
+  // console.log(`[DoDevice.onMounted] Connecting...`);
   ble.connect(props.device.id, connectCallback, connectError);
 });
 </script>

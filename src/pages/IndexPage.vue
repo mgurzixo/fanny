@@ -11,6 +11,9 @@
             <q-item-label caption>
               Rssi:{{ device.rssi }}
             </q-item-label>
+            <!-- <q-item-label caption>
+              Lru:{{ device.lru }}
+            </q-item-label> -->
             <q-item-label caption>
               Id:{{ device.id }}
             </q-item-label>
@@ -37,7 +40,7 @@
 
 import { ref, onMounted, onUnmounted } from "vue";
 import DoDevice from "components/DoDevice.vue";
-import { isDialogOpen, devices, insertDevice } from "@/stores/fannyStore";
+import { isDialogOpen, devices, insertDevice, updateLru } from "@/stores/fannyStore";
 import { mgErrorToast } from "src/lib/mgToast";
 
 
@@ -141,6 +144,7 @@ function scanOk(device) {
   if (device.name != undefined && serviceUUID == 0xffe0) {
     // if (devicesById[device.id] === undefined)
     // console.log(`[IndexPage.scanOk] Real device:${JSON.stringify(device)}`);
+    device.lru = Number(device.rssi);
     insertDevice(device);
   }
 }
@@ -150,7 +154,7 @@ function scanBle() {
   if (isScanning === true) return;
   if (ble === undefined) return;
   isScanning = true;
-  console.log(`[IndexPage.scanBle] scanning`);
+  // console.log(`[IndexPage.scanBle] scanning`);
   ble.startScanWithOptions([], { reportDuplicates: true }, scanOk, scanError);
 }
 
@@ -162,15 +166,23 @@ function stopScanBle() {
   isScanning = false;
 }
 
+let intervalId;
+
 onUnmounted(() => {
-  stopScanBle()
+  stopScanBle();
+  if (intervalId != undefined) {
+    clearInterval(intervalId);
+    intervalId = undefined;
+  }
 });
 
 onMounted(() => {
+  let ul = updateLru;
   if (ble === undefined) {
     mgErrorToast("Bluetooth LE not Available! ");
   }
-  console.log(`[IndexPage.onMounted] ble:${ble}`);
+  // console.log(`[IndexPage.onMounted] ble:${ble}`);
+  intervalId = setInterval(() => ul(), 2000);
   scanBle();
 });
 

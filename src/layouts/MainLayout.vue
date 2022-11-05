@@ -8,7 +8,7 @@
           Fanny
         </q-toolbar-title>
 
-        <div>V1.4</div>
+        <div>V1.5</div>
       </q-toolbar>
     </q-header>
 
