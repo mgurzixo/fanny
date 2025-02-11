@@ -1,0 +1,8 @@
+{
+  "appId": "com.gouget.fanny",
+  "appName": "Fanny",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

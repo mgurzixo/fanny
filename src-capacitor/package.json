@@ -1,0 +1,16 @@
+{
+  "name": "fanny",
+  "version": "1.7.1",
+  "description": "Fan control",
+  "author": "michel@gouget.org",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/app": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/ios": "^7.0.1",
+    "cordova-plugin-ble-central": "^1.7.1",
+    "cordova-plugin-x-toast": "^2.7.3"
+  }
+}

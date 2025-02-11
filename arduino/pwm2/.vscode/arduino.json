@@ -1,0 +1,6 @@
+{
+    "configuration": "clock=clock16,micronucleus=default,burnmode=info",
+    "board": "digistump:avr:digispark-tiny",
+    "port": "/dev/ttyACM0",
+    "sketch": "pwm2.ino"
+}

@@ -1,0 +1,41 @@
+{
+    "name": "fanny",
+    "version": "1.7.1",
+    "description": "Fan control",
+    "productName": "Fanny",
+    "author": "michel@gouget.org",
+    "license": "© 2022-Now Michel Gouget. All rights reserved.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+        "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+        "test": "echo \"No test specified\" && exit 0",
+        "dev": "quasar dev",
+        "build": "quasar build",
+        "postinstall": "quasar prepare"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.16.4",
+        "bleadvertise": "github:mgurzixo/bleadvertise",
+        "buffer": "^6.0.3",
+        "quasar": "^2.6.0",
+        "vue": "^3.0.0",
+        "vue-router": "^4.0.0"
+    },
+    "devDependencies": {
+        "@quasar/app-vite": "^2.0.0",
+        "autoprefixer": "^10.4.2",
+        "eslint": "^8.10.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-vue": "^9.0.0",
+        "postcss": "^8.4.14",
+        "prettier": "^2.5.1"
+    },
+    "engines": {
+        "node": ">= 18",
+        "npm": ">= 6.13.4",
+        "yarn": ">= 1.21.1"
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
