@@ -3,6 +3,8 @@
   "appName": "Fanny",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "url": "http://192.168.32.50:9500",
+    "cleartext": true
   }
 }
