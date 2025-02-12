@@ -11,5 +11,8 @@
         "@capacitor/ios": "^6.0.0",
         "cordova-plugin-ble-central": "^1.7.1",
         "cordova-plugin-x-toast": "^2.7.3"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^6.0.0"
     }
 }
